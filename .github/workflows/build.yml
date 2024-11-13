@@ -1,0 +1,24 @@
+name: Zip Resource Pack
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Zip Datapack
+        run: |
+          zip -r "Rainbow XP Bar.zip" pack.mcmeta pack.png assets/
+
+      - name: Upload Zip Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rainbow XP Bar
+          path: "Rainbow XP Bar.zip"
